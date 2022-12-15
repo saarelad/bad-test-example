@@ -20,7 +20,7 @@ describe('Test calculator client component', () => {
         const client = new CalculatorClient(calculationsServiceMock);
         const multiplySpy = jest.spyOn(calculationsServiceMock, 'mul');
         const result = client.mul(3, 2);
-        // expect(multiplySpy).toHaveBeenCalled();
+        expect(multiplySpy).toHaveBeenCalled();
         expect(result).toBe(6);
     })
 })
