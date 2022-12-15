@@ -1,7 +1,7 @@
-import {CalculationsService} from "./CalculationsService";
+import {CalculationsService, CalculationsServiceInterface} from "./CalculationsService";
 
 describe('Test calculation service', () => {
-    let calculator: CalculationsService;
+    let calculator: CalculationsServiceInterface;
 
     beforeEach(() => {
         calculator = new CalculationsService();
