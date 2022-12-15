@@ -1,22 +1,26 @@
 import {CalculatorClient} from "./CalculatorClient";
-import {CalculationsService} from "../service/CalculationsService";
+import {CalculationsServiceInterface} from "../service/CalculationsService";
+
+const calculationsServiceMock: CalculationsServiceInterface = {
+    add: (a,b) => a+b,
+    mul: jest.fn().mockReturnValue(6),
+};
 
 describe('Test calculator client component', () => {
-    const calculationsService = new CalculationsService()
 
     it('should add', () => {
-        const client = new CalculatorClient(calculationsService);
-        const serviceSpy = jest.spyOn(calculationsService, 'add');
+        const client = new CalculatorClient(calculationsServiceMock);
+        const addSpy = jest.spyOn(calculationsServiceMock, 'add');
         const result = client.add(1, 2);
-        expect(serviceSpy).toHaveBeenCalled();
+        expect(addSpy).toHaveBeenCalled();
         expect(result).toBe(3);
     })
 
     it('should multiply', () => {
-        const client = new CalculatorClient(calculationsService);
-        const serviceSpy = jest.spyOn(calculationsService, 'mul');
+        const client = new CalculatorClient(calculationsServiceMock);
+        const multiplySpy = jest.spyOn(calculationsServiceMock, 'mul');
         const result = client.mul(3, 2);
-        expect(serviceSpy).toHaveBeenCalled();
+        // expect(multiplySpy).toHaveBeenCalled();
         expect(result).toBe(6);
     })
 })
